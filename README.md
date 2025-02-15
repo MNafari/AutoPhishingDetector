@@ -1,59 +1,66 @@
-# AutoPhishingDetector
+# 🚀 AutoPhishingDetector - AI-Based Phishing Detection API
 
-## 📌 Introduction
-AutoPhishingDetector is an AI-powered phishing detection tool that analyzes messages and emails to determine the likelihood of phishing attempts.
+AutoPhishingDetector is a machine learning-based API that detects phishing messages and identifies suspicious links.
 
-## 🚀 Features
-- Detects phishing attempts based on text analysis.
-- Uses Machine Learning (Random Forest) and NLP (TF-IDF) techniques.
-- Provides an API endpoint for checking messages.
-- Trained with real phishing and non-phishing datasets.
+## 🔥 Features
+- Detects phishing messages with **XGBoost** model.
+- Analyzes messages for **suspicious links**.
+- Provides **REST API** for easy integration.
 
-## 🔧 Installation
-### 1️⃣ Clone the repository:
-```bash
-git clone https://github.com/MNafari/AutoPhishingDetector.git
-cd AutoPhishingDetector
-```
+## 🛠 Installation
 
-### 2️⃣ Create and activate a virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/MNafari/AutoPhishingDetector.git
+   cd AutoPhishingDetector
+   ```
 
-### 3️⃣ Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+2. **Create a virtual environment** and activate it:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On macOS/Linux
+   venv\Scripts\activate     # On Windows
+   ```
 
-## 🏗️ Training the Model
-To train the phishing detection model, run:
-```bash
-python src/model.py
-```
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## 🌍 Running the API
-To start the Flask API, execute:
-```bash
-python src/app.py
-```
-The API will be available at `http://127.0.0.1:5000/`
+## 🚀 How to Run
+1. **Start the API server**:
+   ```bash
+   python src/app.py
+   ```
 
-## 📡 Using the API
-To check if a message is phishing or not, send a POST request:
-```bash
-curl -X POST http://127.0.0.1:5000/detect -H "Content-Type: application/json" -d '{"message": "Your account has been compromised! Click here to secure it."}'
-```
-Response example:
-```json
-{
-  "message": "Your account has been compromised! Click here to secure it.",
-  "phishing_probability": 67.84
-}
-```
+2. **Test API with curl**:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/detect -H "Content-Type: application/json" -d '{"message": "Congratulations! You have won a $500 Amazon gift card. Click here to claim it now."}'
+   ```
 
-## 📝 License
-This project is licensed under the MIT License.
+3. **Expected response**:
+   ```json
+   {
+     "message": "Congratulations! You have won a $500 Amazon gift card. Click here to claim it now.",
+     "phishing_probability": 61.67,
+     "is_phishing": true,
+     "contains_suspicious_links": false,
+     "extracted_links": []
+   }
+   ```
+
+## 📦 Deploy with Docker (Optional)
+1. **Build Docker image**:
+   ```bash
+   docker build -t phishing-detector .
+   ```
+
+2. **Run the container**:
+   ```bash
+   docker run -p 5000:5000 phishing-detector
+   ```
+
+## 📜 License
+This project is licensed under the **MIT License**.
 
 
